@@ -1,4 +1,3 @@
-# Step: 입출력과 사칙연산
 
 A, B, C = input().split()
 
