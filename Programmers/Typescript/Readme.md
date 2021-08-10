@@ -1,4 +1,4 @@
-### Typescript 테스트 방벙
+### Typescript 테스트 방법
 
 ```bash
   yarn
