@@ -11,12 +11,8 @@ const TEST_CASE_2 = [
   [1, 3, 2],
 ];
 
-describe("42586번", () => {
+describe("코딩테스트 연습 > 스택/큐 > 기능개발", () => {
   beforeEach(() => {});
-
-  it("솔루션 작성 테스트", () => {
-    expect(solution).toBeDefined();
-  });
 
   it("테스트 케이스 1", () => {
     const [processes, speeds, answer] = TEST_CASE_1;
