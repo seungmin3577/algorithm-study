@@ -42,6 +42,14 @@
 
 export const solution = (clothes: Array<string[]>): number => {
   let answer = 0;
+  const map = new Map();
 
+  clothes.map(([name, kind]) => {
+    map.set(kind, [...(map.get(kind) ?? []), name]);
+  });
+
+  console.log(map.size);
+
+  for (let i = 0; i < map.size; i++) {}
   return answer;
 };
