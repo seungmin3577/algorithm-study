@@ -97,7 +97,90 @@
  *
  * */
 
-export const solution = (new_id: string): string => {
-  let answer = "";
+export const solution = (new_id: string): any => {
+  let answer: string[] = [];
+  const regex = /[a-z0-9._-]/g;
+
+  let split_id: any = new_id.toLowerCase();
+  split_id = split_id.match(regex);
+
+  let preId = "";
+  for (const id of split_id) {
+    if (preId === "." && id === ".") {
+      preId = id;
+      continue;
+    }
+    answer.push(id);
+    preId = id;
+  }
+
+  answer = removeComma(answer);
+
+  // length 16이상인 경우
+  if (answer.length > 15) answer = answer.slice(0, 15);
+  answer = removeComma(answer);
+
+  // length 3미만인 경우
+  if (answer.length === 0) answer.push("a");
+
+  for (let i = answer.length - 1; i < 2; i++) {
+    answer.push(answer[answer.length - 1]);
+  }
+
+  return answer.join("");
+};
+
+const removeComma = (answer: string[]) => {
+  if (answer.length > 0 && answer[0] === ".") answer.shift();
+  if (answer.length > 0 && answer[answer.length - 1] === ".") answer.pop();
+
   return answer;
+};
+
+// #1
+// export const solution = (new_id: string): string => {
+//   let split_id = new_id.toLowerCase().split("");
+//   let previous_word = "";
+
+//   let temp = [];
+
+//   let answer = "";
+
+//   for (let index = 0; index < split_id.length; index++) {
+//     if (!isValid(split_id[index])) continue;
+//     if (previous_word === "." && split_id[index] === ".") continue;
+
+//     temp.push(split_id[index]);
+//     previous_word = split_id[index];
+//   }
+
+//   if (temp[0] === ".") temp.shift();
+
+//   if (temp.length === 0) {
+//     temp.push("aaa");
+//   } else if (temp.length === 1) {
+//     temp.push(temp[temp.length]);
+//     temp.push(temp[temp.length]);
+//   } else if (temp.length === 2) {
+//     temp.push(temp[temp.length]);
+//   } else if (temp.length === 3) {
+//     if (temp[2] === ".") temp.splice(2, 1, temp[1]);
+//   } else if (temp.length > 3 && temp.length < 16) {
+//     if (temp[temp.length] === ".") temp.pop();
+//   } else if (temp.length >= 16) {
+//     if (temp[14] === ".") {
+//       temp = temp.slice(0, 14);
+//     }
+//     temp = temp.slice(0, 15);
+//   }
+
+//   answer = temp.join("");
+
+//   return answer;
+// };
+
+export const isValid = (word: string): boolean => {
+  const regex = /[a-z0-9-._]/;
+
+  return regex.test(word);
 };
