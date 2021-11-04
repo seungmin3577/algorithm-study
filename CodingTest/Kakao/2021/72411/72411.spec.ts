@@ -25,8 +25,8 @@ describe("2021 카카오 공채 (메뉴 리뉴얼)", () => {
 
   for (let i = 0; i < TEST_CASE.length; i++) {
     it(`테스트 케이스 ${i + 1}`, () => {
-      const [new_id, answer] = TEST_CASE[i];
-      const result = solution(new_id);
+      const [order, course, answer] = TEST_CASE[i];
+      const result = solution(order, course);
       expect(result).toEqual(answer);
     });
   }
